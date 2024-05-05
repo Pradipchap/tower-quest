@@ -1,3 +1,9 @@
+import BombSvg from "../assets/Bomb.svg";
+
 export default function Bomb() {
-  return <div className="w-12 h-12 rounded-full bg-black border-4 border-red-800"></div>;
+  return (
+    <div className="w-12 h-12">
+      <img src={BombSvg} alt="bomb picture" />
+    </div>
+  );
 }
