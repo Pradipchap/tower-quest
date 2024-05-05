@@ -1,11 +1,17 @@
+import { RouterProvider, createBrowserRouter } from "react-router-dom";
 import "./App.css";
-import Box from "./components/Box";
+import Opening from "./sections/Opening";
+import GameStartSection from "./sections/GameStartSection";
 
 function App() {
+  const router = createBrowserRouter([
+    { element: <Opening />, path: "/" },
+    { element: <GameStartSection />, path: "/gamestart" },
+  ]);
   return (
-    <div>
-      <Box type="bomb" id="asd" />
-    </div>
+    <>
+      <RouterProvider router={router} />
+    </>
   );
 }
 

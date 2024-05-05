@@ -11,6 +11,7 @@ const MysteryBox = ({ id, type }: BoxInterface) => {
   const bombRef = useRef<HTMLDivElement | null>(null);
 
   function openCube() {
+    console.log(id);
     if (topDiv.current) topDiv.current.style.transform = "translateY(-7rem)";
     if (bombRef.current) {
       bombRef.current.style.display = "block";
