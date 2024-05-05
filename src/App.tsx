@@ -3,10 +3,11 @@ import "./App.css";
 import Opening from "./sections/Opening";
 import GameStartSection from "./sections/GameStartSection";
 import GameLobby from "./sections/GameLobby";
+import CheckUser from "./sections/CheckUser";
 
 function App() {
   const router = createBrowserRouter([
-    { element: <Opening />, path: "/" },
+    { element: <CheckUser />, path: "/" },
     {
       element: <GameStartSection />,
       path: "/game",
