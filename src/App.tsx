@@ -2,11 +2,19 @@ import { RouterProvider, createBrowserRouter } from "react-router-dom";
 import "./App.css";
 import Opening from "./sections/Opening";
 import GameStartSection from "./sections/GameStartSection";
+import GameLobby from "./sections/GameLobby";
 
 function App() {
   const router = createBrowserRouter([
     { element: <Opening />, path: "/" },
-    { element: <GameStartSection />, path: "/gamestart" },
+    {
+      element: <GameStartSection />,
+      path: "/game",
+      children: [
+        { element: <GameLobby />, path: "/game" },
+        { element: <Opening />, path: "hello" },
+      ],
+    },
   ]);
   return (
     <>

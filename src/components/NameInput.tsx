@@ -2,16 +2,18 @@ import { FormEvent } from "react";
 import Button from "./Button";
 import { useAppDispatch } from "../../custom_hooks/reduxHooks";
 import { updateProfile } from "../../redux/slices/ProfileSlice";
+import { useNavigate } from "react-router-dom";
 
 export default function NameInput() {
   const dispatch = useAppDispatch();
+  const navigate = useNavigate();
 
   function updateUser(e: FormEvent) {
     e.preventDefault();
     const inputELement = e.currentTarget.children[1] as HTMLInputElement;
     const data = inputELement.value;
-    console.log(data);
     dispatch(updateProfile({ name: data, points: 1000 }));
+    navigate("/game");
   }
   return (
     <form className=" flex flex-col items-center gap-5" onSubmit={updateUser}>
