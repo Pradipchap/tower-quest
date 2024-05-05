@@ -14,7 +14,10 @@ export default function NameInput() {
     const data = inputELement.value;
     dispatch(updateProfile({ name: data, points: 1000 }));
     navigate("/game");
+    sessionStorage.setItem("name", data);
+    sessionStorage.setItem("points", "1000");
   }
+
   return (
     <form className=" flex flex-col items-center gap-5" onSubmit={updateUser}>
       <label className="text-2xl text-white font-bold">Enter Your Name</label>
