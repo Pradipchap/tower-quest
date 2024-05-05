@@ -1,7 +1,12 @@
 import "./App.css";
+import Box from "./components/Box";
 
 function App() {
-  return <div className="text-red-600">Hello World</div>;
+  return (
+    <div>
+      <Box type="bomb" id="asd" />
+    </div>
+  );
 }
 
 export default App;
