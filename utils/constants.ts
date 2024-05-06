@@ -1,0 +1,1 @@
+export const levels = ["Normal", "Medium", "Hard", "Impossible"];

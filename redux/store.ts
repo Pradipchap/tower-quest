@@ -1,9 +1,11 @@
 import { configureStore } from "@reduxjs/toolkit";
 import ProfileReducer from "./slices/ProfileSlice";
+import GameReducer from "./slices/GameSlice";
 
 export const store = configureStore({
   reducer: {
     Profile: ProfileReducer,
+    Game: GameReducer,
   },
 });
 
