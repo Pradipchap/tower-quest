@@ -1,9 +1,9 @@
-import { useRef } from "react";
+import { useEffect, useRef } from "react";
 import Bomb from "./Bomb";
 import { BoxInterface } from "../../interfaces/componentInterfaces";
 import Gem from "./Gem";
 
-const MysteryBox = ({ id, type }: BoxInterface) => {
+const MysteryBox = ({ id, type, setGameState }: BoxInterface) => {
   const backDiv = useRef<HTMLDivElement | null>(null);
   const topDiv = useRef<HTMLDivElement | null>(null);
   const leftDiv = useRef<HTMLDivElement | null>(null);
@@ -12,18 +12,38 @@ const MysteryBox = ({ id, type }: BoxInterface) => {
 
   function openCube() {
     console.log(id);
-    if (topDiv.current) topDiv.current.style.transform = "translateY(-7rem)";
+    if (topDiv.current) {
+      topDiv.current.style.transform = "translateY(-7rem)";
+    }
     if (bombRef.current) {
       bombRef.current.style.display = "block";
       setTimeout(() => {
         if (bombRef.current) {
           bombRef.current.style.opacity = "100%";
           bombRef.current.style.transform = "translateY(-10rem)";
-          // bombRef.current.style.transform = "-translateX(-50%)";
+
+          bombRef.current.addEventListener("transitionend", (event) => {
+            //only updating state if property is transform not opacity
+            if (event.propertyName === "transform") updateGameState();
+          });
         }
       }, 1000);
     }
   }
+
+  function updateGameState() {
+    setGameState((state) => [type, ...state]);
+  }
+
+  //clearing eventlistener when component unmounts
+  useEffect(() => {
+    const refValue = bombRef.current;
+    return () => {
+      if (refValue) {
+        refValue.removeEventListener("transitionend", updateGameState);
+      }
+    };
+  }, []);
 
   return (
     <div
@@ -37,7 +57,7 @@ const MysteryBox = ({ id, type }: BoxInterface) => {
         ref={bombRef}
         className="h-10 absolute bottom-0 left-1/2 w-10 hidden opacity-0 transition-all"
       >
-        {type === "bomb" ? <Bomb /> : <Gem />}
+        {type === 0 ? <Bomb /> : <Gem />}
       </div>
       <div
         ref={backDiv}
