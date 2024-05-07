@@ -1,6 +1,9 @@
+import { Dispatch, SetStateAction } from "react";
+
 export interface BoxInterface {
   id: string;
-  type: "gem" | "bomb";
+  type: 0 | 1;
+  setGameState: Dispatch<SetStateAction<number[]>>;
 }
 
 export type GameLevelType = "Normal" | "Medium" | "Hard" | "Impossible";
